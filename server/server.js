@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017";
 const DB_NAME = "velvet_vapors_db";
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 const SECRET = process.env.JWT_SECRET || "VELVET_VAPORS_SECRET";
 
 const ADMIN_EMAILS = ["admin@velvetvapors.com"];
@@ -438,6 +438,32 @@ async function startServer() {
     // Ensure indexes
     await users().createIndex({ email: 1 }, { unique: true }).catch(() => {});
     await perfumes().createIndex({ name: "text", brand: "text" }).catch(() => {});
+
+    // Auto-seed if perfumes collection is empty
+    if ((await perfumes().countDocuments()) === 0) {
+      console.log("🌸 Fresh database detected, auto-seeding sample perfumes...");
+      const { perfumeData } = require("./seed");
+      const withDates = perfumeData.map((p) => ({ ...p, createdAt: new Date() }));
+      await perfumes().insertMany(withDates);
+
+      const adminEmail = "admin@velvetvapors.com";
+      const adminPass = await bcrypt.hash("admin123", 10);
+      await users().updateOne(
+        { email: adminEmail },
+        {
+          $set: {
+            name: "Velvet Vapors Admin",
+            email: adminEmail,
+            password: adminPass,
+            role: "admin",
+            wishlist: [],
+            createdAt: new Date(),
+          },
+        },
+        { upsert: true }
+      );
+      console.log("👑 Auto-seeded admin user: admin@velvetvapors.com / admin123");
+    }
 
     app.listen(PORT, () => {
       console.log(`🌹 Velvet Vapors server running on port ${PORT}`);

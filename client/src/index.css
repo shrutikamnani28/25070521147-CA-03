@@ -831,3 +831,140 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; }
 @media (min-width: 721px) {
   .mobile-menu { display: none !important; }
 }
+
+/* ─── React Bits & Interactive Animations ────────────── */
+@keyframes shine-sweep {
+  0%   { background-position: 200% 50%; }
+  100% { background-position: -200% 50%; }
+}
+
+@keyframes pulse-gold-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.25), 0 0 30px rgba(138, 43, 226, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.45), 0 0 50px rgba(138, 43, 226, 0.3);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%      { transform: translateY(-8px) rotate(2deg); }
+}
+
+.floating-rose {
+  animation: float-gentle 4.5s ease-in-out infinite;
+  display: inline-block;
+  transform-origin: center bottom;
+  filter: drop-shadow(0 10px 20px rgba(212, 175, 55, 0.3));
+}
+
+.interactive-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.password-toggle-btn:hover {
+  color: var(--gold);
+}
+
+.quick-btn-interactive {
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid var(--border-gold);
+}
+
+.quick-btn-interactive:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+  background: var(--gold-dim);
+}
+
+.quick-btn-interactive:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 80%
+  );
+  transform: rotate(30deg) translateX(-100%);
+  animation: btn-shimmer 4s infinite;
+}
+
+@keyframes btn-shimmer {
+  0%, 60% { transform: rotate(30deg) translateX(-150%); }
+  100%    { transform: rotate(30deg) translateX(150%); }
+}
+
+.strength-bar-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin-top: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.strength-bar-fill {
+  height: 100%;
+  transition: width 0.35s ease, background-color 0.35s ease;
+  border-radius: 2px;
+}
+
+/* ─── Auth Page Responsive Flow ──────────────────────── */
+.auth-page-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 960px) {
+  .auth-page-container {
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+  .auth-hero-panel {
+    min-height: auto !important;
+    padding: 3rem 1.5rem 1.5rem !important;
+    flex: none !important;
+    width: 100% !important;
+  }
+  .auth-form-panel {
+    padding: 1.5rem 1.25rem 3rem !important;
+    flex: none !important;
+    width: 100% !important;
+  }
+}
+
+

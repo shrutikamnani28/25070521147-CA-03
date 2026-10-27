@@ -276,9 +276,15 @@ async function seed() {
   } catch (err) {
     console.error("❌ Seed failed:", err.message);
   } finally {
-    await client.close();
-    process.exit(0);
+    if (require.main === module) {
+      await client.close();
+      process.exit(0);
+    }
   }
 }
 
-seed();
+if (require.main === module) {
+  seed();
+}
+
+module.exports = { seed, perfumeData };
