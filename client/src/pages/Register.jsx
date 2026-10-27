@@ -134,7 +134,7 @@ export default function Register() {
             {/* Interactive Benefits List */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', textAlign: 'left', maxWidth: 320, margin: '0 auto' }}>
               {[
-                { icon: '🌹', text: 'Access 12+ signature formulations' },
+                { icon: '✦', text: 'Access 19+ master perfumer flacons' },
                 { icon: '🎁', text: '10% off with exclusive code VELVET10' },
                 { icon: '📦', text: 'Live 4-stage olfactory order tracking' },
                 { icon: '✨', text: 'Wishlist & scent profiling recommendations' },
@@ -366,7 +366,7 @@ export default function Register() {
               }}
               disabled={loading}
             >
-              {loading ? 'Creating Your Patron Account…' : 'Create Account 🌹'}
+              {loading ? 'Creating Your Patron Account…' : 'Create Account ✦'}
             </button>
           </form>
 

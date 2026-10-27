@@ -155,7 +155,7 @@ function ProductCard({ p }) {
     e.preventDefault()
     e.stopPropagation()
     addToCart(p, p.size || '100ml', 1)
-    showToast(`${p.name} added to bag! 🌹`)
+    showToast(`${p.name} added to bag! ✦`)
   }
 
   const lowStock = p.stock > 0 && p.stock <= 5
@@ -252,7 +252,7 @@ export default function Home() {
 
   const scentFamilies = [
     { category: 'Woody', icon: '🌲', label: 'Woody & Earthy', desc: 'Cedarwood, Vetiver, Dark Leather' },
-    { category: 'Floral', icon: '🌹', label: 'Floral & Velvet', desc: 'Bulgarian Rose, Peony, Iris' },
+    { category: 'Floral', icon: '🌸', label: 'Floral & Powdery', desc: 'Florentine Iris, Lilac, Jasmine' },
     { category: 'Oriental', icon: '🌙', label: 'Spicy & Oriental', desc: 'Saffron, Oud, Warm Amber' },
     { category: 'Fresh', icon: '🌿', label: 'Citrus & Fresh', desc: 'Bergamot, Marine Sea Salt, Mint' },
   ]
@@ -293,7 +293,7 @@ export default function Home() {
             background: 'rgba(197, 160, 89,0.1)', border: '1px solid rgba(197, 160, 89,0.3)',
             borderRadius: 999, padding: '0.4rem 1.25rem', marginBottom: '1.5rem',
           }}>
-            <span style={{ fontSize: '1rem' }}>🌹</span>
+            <span style={{ color: 'var(--gold)' }}>✦</span>
             <span style={{ color: 'var(--gold-light)', fontSize: '0.82rem', letterSpacing: '0.25em', textTransform: 'uppercase', fontWeight: 600 }}>
               Atelier Niche Perfumery
             </span>
