@@ -15,7 +15,7 @@ function Stars({ rating, interactive, onRate }) {
           onMouseEnter={() => interactive && setHover(n)}
           onMouseLeave={() => interactive && setHover(0)}
           onClick={() => interactive && onRate(n)}
-        >★</span>
+        >{'\u2605'}</span>
       ))}
     </div>
   )
@@ -38,30 +38,103 @@ function MeterBar({ label, value, max = 5, unit = '' }) {
 
 function NotesPyramid({ pyramid }) {
   const tiers = [
-    { label: 'Top Notes', notes: pyramid?.topNotes || [], color: '#d4af37', icon: '△' },
-    { label: 'Heart Notes', notes: pyramid?.heartNotes || [], color: '#a78bfa', icon: '◆' },
-    { label: 'Base Notes', notes: pyramid?.baseNotes || [], color: '#6b7280', icon: '▽' },
+    {
+      label: 'Top Notes',
+      stage: 'First Impression · 15–30 Mins',
+      desc: 'The initial radiant burst upon first contact with skin',
+      notes: pyramid?.topNotes || [],
+      color: '#c5a059',
+      bg: 'linear-gradient(135deg, rgba(197, 160, 89, 0.12) 0%, rgba(9, 29, 23, 0.75) 100%)',
+      borderColor: 'rgba(197, 160, 89, 0.35)',
+      badgeBg: 'rgba(197, 160, 89, 0.15)',
+      icon: '△',
+      width: '80%',
+    },
+    {
+      label: 'Heart Notes',
+      stage: 'The Signature Soul · 2–4 Hours',
+      desc: 'The true emotional core that defines the fragrance profile',
+      notes: pyramid?.heartNotes || [],
+      color: '#34d399',
+      bg: 'linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(9, 29, 23, 0.75) 100%)',
+      borderColor: 'rgba(52, 211, 153, 0.3)',
+      badgeBg: 'rgba(52, 211, 153, 0.15)',
+      icon: '◆',
+      width: '90%',
+    },
+    {
+      label: 'Base Notes',
+      stage: 'The Lingering Memory · 6–12+ Hours',
+      desc: 'Deep balsamic resins and precious woods that bond with skin',
+      notes: pyramid?.baseNotes || [],
+      color: '#e6ca85',
+      bg: 'linear-gradient(135deg, rgba(230, 202, 133, 0.1) 0%, rgba(9, 29, 23, 0.75) 100%)',
+      borderColor: 'rgba(230, 202, 133, 0.28)',
+      badgeBg: 'rgba(230, 202, 133, 0.15)',
+      icon: '▽',
+      width: '100%',
+    },
   ]
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-      {tiers.map((t, i) => (
-        <div key={t.label} style={{
-          background: 'rgba(212,175,55,0.05)',
-          border: '1px solid var(--gold-dim)',
-          borderRadius: 12,
-          padding: '0.9rem 1.2rem',
-          clipPath: i === 0
-            ? 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)'
-            : i === 2
-            ? 'polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%)'
-            : undefined,
-        }}>
-          <p style={{ color: t.color, fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.4rem' }}>
-            {t.icon} {t.label}
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%' }}>
+      {tiers.map((t) => (
+        <div
+          key={t.label}
+          className="glass-card"
+          style={{
+            width: t.width,
+            maxWidth: '100%',
+            background: t.bg,
+            border: `1px solid ${t.borderColor}`,
+            borderRadius: '16px',
+            padding: '1.25rem 1.75rem',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.35)',
+            transition: 'transform 0.3s ease, border-color 0.3s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)'
+            e.currentTarget.style.borderColor = t.color
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.borderColor = t.borderColor
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.6rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span style={{ color: t.color, fontSize: '0.9rem', fontWeight: 'bold' }}>{t.icon}</span>
+              <span style={{ color: t.color, fontFamily: 'var(--font-serif)', fontSize: '1.05rem', fontWeight: 700, letterSpacing: '0.04em' }}>
+                {t.label}
+              </span>
+            </div>
+            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', background: 'rgba(255, 255, 255, 0.05)', padding: '0.2rem 0.65rem', borderRadius: 999, border: '1px solid rgba(255,255,255,0.08)' }}>
+              {t.stage}
+            </span>
+          </div>
+
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', marginBottom: '0.85rem', fontStyle: 'italic', lineHeight: 1.5 }}>
+            {t.desc}
           </p>
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-            {t.notes.map(n => (
-              <span key={n} style={{ background: 'rgba(212,175,55,0.12)', color: 'var(--text-primary)', padding: '0.2rem 0.6rem', borderRadius: 999, fontSize: '0.8rem' }}>{n}</span>
+
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            {t.notes.map((n) => (
+              <span
+                key={n}
+                style={{
+                  background: t.badgeBg,
+                  color: '#fff',
+                  border: `1px solid ${t.borderColor}`,
+                  padding: '0.35rem 0.85rem',
+                  borderRadius: 999,
+                  fontSize: '0.84rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.02em',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+                }}
+              >
+                {n}
+              </span>
             ))}
           </div>
         </div>
@@ -170,7 +243,12 @@ export default function ProductDetail() {
           {/* Image */}
           <div>
             <div className="glass-card" style={{ overflow: 'hidden', padding: 0, height: 420 }}>
-              <img src={perfume.image} alt={perfume.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img
+                src={perfume.image || '/perfumes/floral/01_velvet_rose.png'}
+                alt={perfume.name}
+                onError={(e) => { e.currentTarget.src = '/perfumes/floral/01_velvet_rose.png' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
             <div style={{ display: 'flex', gap: 8, marginTop: '0.75rem', flexWrap: 'wrap' }}>
               <Badge type={perfume.category} />
@@ -190,7 +268,7 @@ export default function ProductDetail() {
             </div>
 
             <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', color: 'var(--gold)', fontWeight: 700, marginBottom: '1.25rem' }}>
-              ₹{displayPrice.toLocaleString('en-IN')}
+              {'\u20B9'}{displayPrice.toLocaleString('en-IN')}
             </div>
 
             <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '1.5rem', fontSize: '0.95rem' }}>{perfume.description}</p>
@@ -204,10 +282,10 @@ export default function ProductDetail() {
                     style={{
                       padding: '0.5rem 1.2rem', borderRadius: 999, cursor: 'pointer', fontWeight: 500, fontSize: '0.9rem',
                       background: size === s ? 'var(--gold)' : 'transparent',
-                      color: size === s ? '#0b0510' : 'var(--gold)',
+                      color: size === s ? '#05140f' : 'var(--gold)',
                       border: '1.5px solid var(--border-gold)',
                       transition: 'all 0.2s',
-                    }}>{s} — ₹{prices[s].toLocaleString('en-IN')}</button>
+                    }}>{s} {'\u2014'} {'\u20B9'}{prices[s].toLocaleString('en-IN')}</button>
                 ))}
               </div>
             </div>
@@ -233,9 +311,14 @@ export default function ProductDetail() {
         </div>
 
         {/* Scent Pyramid */}
-        <div style={{ marginTop: '3rem' }}>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.7rem', marginBottom: '1.5rem' }}>Olfactory Pyramid</h2>
-          <div style={{ maxWidth: 500 }}>
+        <div style={{ marginTop: '3.5rem' }}>
+          <div style={{ marginBottom: '1.75rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.85rem', marginBottom: '0.4rem' }}>Olfactory Pyramid</h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem' }}>
+              How the fragrance composition evolves across skin over time
+            </p>
+          </div>
+          <div style={{ maxWidth: 820, width: '100%' }}>
             <NotesPyramid pyramid={perfume.scentPyramid} />
           </div>
         </div>

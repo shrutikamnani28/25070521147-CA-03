@@ -12,7 +12,7 @@ export default function ShinyText({
         display: 'inline-block',
         backgroundImage: disabled
           ? 'none'
-          : 'linear-gradient(120deg, rgba(212,175,55,0.7) 0%, #fffbf0 45%, #ffffff 50%, #fffbf0 55%, rgba(212,175,55,0.7) 100%)',
+          : 'linear-gradient(120deg, rgba(197, 160, 89,0.7) 0%, #fffbf0 45%, #ffffff 50%, #fffbf0 55%, rgba(197, 160, 89,0.7) 100%)',
         backgroundSize: '250% 100%',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: disabled ? 'inherit' : 'transparent',

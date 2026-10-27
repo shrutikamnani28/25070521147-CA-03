@@ -40,7 +40,7 @@ export default function Admin() {
     stock: 20,
     rating: 4.8,
     description: '',
-    image: 'https://images.unsplash.com/photo-1541643600914-78b084683702?w=500&auto=format&fit=crop'
+    image: '/perfumes/woody/16_sandal_noir.png'
   })
 
   // Delete Confirm Dialog
@@ -128,7 +128,7 @@ export default function Admin() {
       stock: 20,
       rating: 4.8,
       description: '',
-      image: 'https://images.unsplash.com/photo-1541643600914-78b084683702?w=500&auto=format&fit=crop'
+      image: '/perfumes/woody/16_sandal_noir.png'
     })
     setPerfumeModalOpen(true)
   }
@@ -418,7 +418,7 @@ export default function Admin() {
                     </thead>
                     <tbody>
                       {orders.slice(0, 5).map(o => (
-                        <tr key={o._id} style={{ borderBottom: '1px solid rgba(212,175,55,0.08)', fontSize: '0.9rem' }}>
+                        <tr key={o._id} style={{ borderBottom: '1px solid rgba(197, 160, 89,0.08)', fontSize: '0.9rem' }}>
                           <td style={{ padding: '0.75rem', fontFamily: 'monospace', color: 'var(--gold)' }}>
                             #{String(o._id).slice(-6).toUpperCase()}
                           </td>
@@ -430,7 +430,7 @@ export default function Admin() {
                               borderRadius: 999,
                               fontSize: '0.75rem',
                               fontWeight: 600,
-                              background: o.status === 'Delivered' ? 'var(--emerald-dim)' : 'rgba(212,175,55,0.15)',
+                              background: o.status === 'Delivered' ? 'var(--emerald-dim)' : 'rgba(197, 160, 89,0.15)',
                               color: o.status === 'Delivered' ? 'var(--emerald)' : 'var(--gold)'
                             }}>
                               {o.status}
@@ -462,8 +462,9 @@ export default function Admin() {
                     <div key={p._id} className="glass-card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                       <div style={{ display: 'flex', gap: '1rem', padding: '1rem', borderBottom: '1px solid var(--gold-dim)' }}>
                         <img
-                          src={p.image}
+                          src={p.image || '/perfumes/floral/01_velvet_rose.png'}
                           alt={p.name}
+                          onError={(e) => { e.currentTarget.src = '/perfumes/floral/01_velvet_rose.png' }}
                           style={{ width: 70, height: 70, borderRadius: 10, objectFit: 'cover' }}
                         />
                         <div style={{ flex: 1, minWidth: 0 }}>
@@ -546,7 +547,7 @@ export default function Admin() {
                   </thead>
                   <tbody>
                     {orders.map(o => (
-                      <tr key={o._id} style={{ borderBottom: '1px solid rgba(212,175,55,0.08)', fontSize: '0.9rem' }}>
+                      <tr key={o._id} style={{ borderBottom: '1px solid rgba(197, 160, 89,0.08)', fontSize: '0.9rem' }}>
                         <td style={{ padding: '0.85rem', verticalAlign: 'top' }}>
                           <span style={{ fontFamily: 'monospace', color: 'var(--gold)', fontWeight: 600 }}>
                             #{String(o._id).slice(-8).toUpperCase()}
@@ -617,7 +618,7 @@ export default function Admin() {
                   </thead>
                   <tbody>
                     {users.map(u => (
-                      <tr key={u._id} style={{ borderBottom: '1px solid rgba(212,175,55,0.08)', fontSize: '0.9rem' }}>
+                      <tr key={u._id} style={{ borderBottom: '1px solid rgba(197, 160, 89,0.08)', fontSize: '0.9rem' }}>
                         <td style={{ padding: '0.85rem', fontWeight: 600 }}>
                           {u.name}
                         </td>

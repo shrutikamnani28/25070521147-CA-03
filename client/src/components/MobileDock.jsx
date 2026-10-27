@@ -7,6 +7,7 @@ export default function MobileDock() {
     { to: '/cart',    icon: '🛍', label: 'Bag' },
     { to: '/wishlist',icon: '♡',  label: 'Wish' },
     { to: '/orders',  icon: '📦', label: 'Orders' },
+    { to: '/profile', icon: '👑', label: 'Profile' },
   ]
   return (
     <div className="mobile-dock">

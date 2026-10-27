@@ -42,7 +42,7 @@ export default function Login() {
     setLoading(true)
     try {
       await login(form.email, form.password)
-      showToast('Welcome back to Velvet Vapors! 🌹')
+      showToast('Welcome back to Velvet Vapors! ✦')
       navigate('/home')
     } catch (err) {
       setError(err.message || 'Login failed')
@@ -66,53 +66,69 @@ export default function Login() {
         className="auth-hero-panel"
         style={{
           flex: 1,
-          background: 'linear-gradient(135deg, #0b0510 0%, #1a0b26 50%, #2a113d 100%)',
+          background: 'linear-gradient(135deg, #05140f 0%, #1a0b26 50%, #2a113d 100%)',
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           padding: '3rem 2.5rem', position: 'relative', overflow: 'hidden', minHeight: '100vh',
         }}
       >
         {/* Interactive Floating Gold & Plum Olfactory Particles */}
         <Particles
-          particleCount={40}
-          particleColors={['#d4af37', '#f0d060', '#c084fc', '#e879f9', '#ffffff']}
-          speed={0.4}
+          particleCount={55}
+          particleColors={['#c5a059', '#e6ca85', '#34d399', '#6ee7b7', '#ffffff']}
+          speed={0.45}
           interactive={true}
+          connectLines={true}
+          maxConnectDistance={90}
         />
 
         {/* Ambient Radial Aura */}
         <div style={{
           position: 'absolute',
-          width: 500, height: 500,
+          width: 550, height: 550,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(212,175,55,0.14) 0%, rgba(147,51,234,0.12) 50%, transparent 75%)',
+          background: 'radial-gradient(circle, rgba(197, 160, 89,0.22) 0%, rgba(5, 150, 105,0.18) 50%, transparent 75%)',
           top: '50%', left: '50%',
           transform: 'translate(-50%,-50%)',
-          filter: 'blur(40px)',
+          filter: 'blur(50px)',
           pointerEvents: 'none',
         }} />
 
         {/* 3D Interactive Tilt Centerpiece */}
         <TiltCard maxTilt={14} perspective={900} scale={1.03} style={{ zIndex: 1, maxWidth: 440, width: '100%' }}>
           <div style={{
-            background: 'rgba(19, 9, 28, 0.65)',
+            background: 'rgba(8, 28, 21, 0.65)',
             backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(212, 175, 55, 0.35)',
+            border: '1px solid rgba(197, 160, 89, 0.35)',
             borderRadius: '28px',
             padding: '3rem 2rem',
             textAlign: 'center',
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.15)',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(197, 160, 89, 0.15)',
           }}>
-            {/* Animated Floating Rose */}
-            <div className="floating-rose" style={{ fontSize: '4.5rem', marginBottom: '1.25rem', userSelect: 'none' }}>
-              🌹
+            {/* Animated Insignia Emblem */}
+            <div className="floating-rose" style={{ marginBottom: '1.25rem', userSelect: 'none' }}>
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 76,
+                height: 76,
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg, rgba(197, 160, 89, 0.2), rgba(6, 78, 59, 0.15))',
+                border: '1.5px solid var(--border-gold)',
+                boxShadow: '0 0 35px rgba(197, 160, 89, 0.35)',
+              }}>
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--gold-light)' }}>
+                  <path d="M12 2L14.6 9.4L22 12L14.6 14.6L12 22L9.4 14.6L2 12L9.4 9.4L12 2Z" />
+                </svg>
+              </span>
             </div>
 
-            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', fontWeight: 900, marginBottom: '0.5rem', letterSpacing: '0.02em' }}>
+            <h1 style={{ fontFamily: "var(--font-brand)", fontSize: 'clamp(1.9rem, 3.8vw, 2.7rem)', fontWeight: 800, marginBottom: '0.5rem', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
               <ShinyText text="Velvet Vapors" speed={3.5} />
             </h1>
 
-            <p style={{ color: 'var(--gold-light)', fontSize: '1.1rem', fontStyle: 'italic', letterSpacing: '0.06em', marginBottom: '1.5rem', opacity: 0.9 }}>
-              “Wear the mood.”
+            <p style={{ color: 'var(--gold-light)', fontSize: '0.92rem', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '1.5rem', opacity: 0.9 }}>
+              Haute Parfumerie Atelier
             </p>
 
             <hr style={{ border: 'none', borderTop: '1px solid var(--gold-dim)', margin: '1.25rem auto', width: 90 }} />
@@ -124,7 +140,7 @@ export default function Login() {
             {/* Interactive Feature Pills */}
             <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <span style={{
-                background: 'rgba(212,175,55,0.12)', border: '1px solid rgba(212,175,55,0.3)',
+                background: 'rgba(197, 160, 89,0.12)', border: '1px solid rgba(197, 160, 89,0.3)',
                 borderRadius: 999, padding: '0.35rem 0.85rem', fontSize: '0.78rem', color: 'var(--gold-light)',
                 display: 'inline-flex', alignItems: 'center', gap: '5px'
               }}>
@@ -161,36 +177,38 @@ export default function Login() {
           minWidth: 0,
           position: 'relative',
           overflow: 'hidden',
-          background: 'linear-gradient(135deg, #0d0614 0%, #170b24 50%, #0b0510 100%)',
-          borderLeft: '1px solid rgba(212, 175, 55, 0.15)',
+          background: 'linear-gradient(135deg, #0d0614 0%, #170b24 50%, #05140f 100%)',
+          borderLeft: '1px solid rgba(197, 160, 89, 0.15)',
         }}
       >
         {/* Ambient Particles in Form Background */}
         <Particles
-          particleCount={30}
-          particleColors={['#d4af37', '#f0d060', '#c084fc', '#ffffff']}
-          speed={0.35}
+          particleCount={45}
+          particleColors={['#d4af37', '#ffd700', '#f6e05e', '#c084fc', '#f472b6', '#ffffff']}
+          speed={0.4}
           interactive={true}
+          connectLines={true}
+          maxConnectDistance={85}
         />
 
         {/* Ambient Floating Aurora Glowing Orbs behind the Card */}
         <div style={{
           position: 'absolute',
-          width: 480, height: 480,
+          width: 520, height: 520,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(147, 51, 234, 0.16) 0%, rgba(212, 175, 55, 0.1) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(5, 150, 105, 0.22) 0%, rgba(197, 160, 89, 0.16) 40%, transparent 70%)',
           top: '45%', left: '50%',
           transform: 'translate(-50%, -50%)',
-          filter: 'blur(60px)',
+          filter: 'blur(55px)',
           pointerEvents: 'none',
           animation: 'drift2 14s ease-in-out infinite',
         }} />
 
         <div style={{
           position: 'absolute',
-          width: 320, height: 320,
+          width: 360, height: 360,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(197, 160, 89, 0.18) 0%, rgba(236, 72, 153, 0.12) 50%, transparent 70%)',
           bottom: '-10%', right: '-10%',
           filter: 'blur(50px)',
           pointerEvents: 'none',
@@ -198,7 +216,7 @@ export default function Login() {
         }} />
 
         <SpotlightCard
-          spotlightColor="rgba(212, 175, 55, 0.28)"
+          spotlightColor="rgba(197, 160, 89, 0.28)"
           spotlightSize={340}
           style={{ width: '100%', maxWidth: 440, padding: '2.5rem 2.25rem', zIndex: 2 }}
         >
@@ -241,7 +259,7 @@ export default function Login() {
                 style={{
                   marginTop: '0.4rem',
                   borderColor: quickFmt ? 'var(--gold)' : undefined,
-                  boxShadow: quickFmt ? '0 0 12px rgba(212,175,55,0.4)' : undefined,
+                  boxShadow: quickFmt ? '0 0 12px rgba(197, 160, 89,0.4)' : undefined,
                   transition: 'all 0.3s ease',
                 }}
               />
@@ -262,7 +280,7 @@ export default function Login() {
                     width: '100%',
                     paddingRight: '46px',
                     borderColor: quickFmt ? 'var(--gold)' : undefined,
-                    boxShadow: quickFmt ? '0 0 12px rgba(212,175,55,0.4)' : undefined,
+                    boxShadow: quickFmt ? '0 0 12px rgba(197, 160, 89,0.4)' : undefined,
                     transition: 'all 0.3s ease',
                   }}
                 />
@@ -287,11 +305,11 @@ export default function Login() {
                 fontSize: '1rem',
                 fontWeight: 600,
                 letterSpacing: '0.04em',
-                boxShadow: '0 4px 20px rgba(212, 175, 55, 0.35)',
+                boxShadow: '0 4px 20px rgba(197, 160, 89, 0.35)',
               }}
               disabled={loading}
             >
-              {loading ? 'Authenticating…' : 'Sign In 🌹'}
+              {loading ? 'Authenticating…' : 'Sign In ✦'}
             </button>
           </form>
 

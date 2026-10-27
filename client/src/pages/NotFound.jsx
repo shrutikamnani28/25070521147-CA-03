@@ -9,7 +9,7 @@ export default function NotFound() {
       justifyContent: 'center',
       textAlign: 'center',
       padding: '2rem',
-      background: 'radial-gradient(ellipse at center, #2d1b4e 0%, #0b0510 70%)',
+      background: 'radial-gradient(ellipse at center, #064e3b 0%, #05140f 70%)',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -19,7 +19,7 @@ export default function NotFound() {
         width: 380,
         height: 380,
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.12), transparent 70%)',
+        background: 'radial-gradient(circle, rgba(197, 160, 89, 0.12), transparent 70%)',
         top: '20%',
         left: '15%',
         filter: 'blur(50px)',
@@ -27,7 +27,7 @@ export default function NotFound() {
       }} />
 
       <div className="glass-card slide-up" style={{ maxWidth: 540, padding: '3.5rem 2.5rem', position: 'relative', zIndex: 1 }}>
-        <div style={{ fontSize: '4.5rem', marginBottom: '1rem', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.4))' }}>
+        <div style={{ fontSize: '4.5rem', marginBottom: '1rem', filter: 'drop-shadow(0 0 20px rgba(197, 160, 89,0.4))' }}>
           🌫️🌹
         </div>
         

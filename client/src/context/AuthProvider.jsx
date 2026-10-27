@@ -75,8 +75,19 @@ export function AuthProvider({ children }) {
     return res
   }, [token, logout])
 
+  const updateProfile = useCallback(async (data) => {
+    const res = await authFetch('/api/auth/profile', {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    })
+    const json = await res.json()
+    if (!res.ok) throw new Error(json.msg || 'Failed to update profile')
+    setUser(json.user)
+    return json.user
+  }, [authFetch])
+
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, register, logout, authFetch }}>
+    <AuthContext.Provider value={{ user, setUser, token, loading, login, register, logout, authFetch, updateProfile }}>
       {children}
     </AuthContext.Provider>
   )

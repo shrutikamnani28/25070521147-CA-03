@@ -62,7 +62,7 @@ export default function Register() {
     setLoading(true)
     try {
       await register(form.name, form.email, form.password)
-      showToast('Welcome to Velvet Vapors! 🌹')
+      showToast('Welcome to Velvet Vapors! ✦')
       navigate('/home')
     } catch (err) {
       setError(err.message || 'Registration failed')
@@ -79,41 +79,43 @@ export default function Register() {
         className="auth-hero-panel"
         style={{
           flex: 1,
-          background: 'linear-gradient(135deg, #0b0510 0%, #1a0b26 50%, #2a113d 100%)',
+          background: 'linear-gradient(135deg, #05140f 0%, #1a0b26 50%, #2a113d 100%)',
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           padding: '3rem 2.5rem', position: 'relative', overflow: 'hidden', minHeight: '100vh',
         }}
       >
         {/* Interactive Olfactory Particle Field */}
         <Particles
-          particleCount={40}
-          particleColors={['#d4af37', '#f0d060', '#c084fc', '#e879f9', '#ffffff']}
-          speed={0.4}
+          particleCount={55}
+          particleColors={['#c5a059', '#e6ca85', '#34d399', '#6ee7b7', '#ffffff']}
+          speed={0.45}
           interactive={true}
+          connectLines={true}
+          maxConnectDistance={90}
         />
 
         {/* Ambient Radial Aura */}
         <div style={{
           position: 'absolute',
-          width: 500, height: 500,
+          width: 550, height: 550,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(212,175,55,0.14) 0%, rgba(147,51,234,0.12) 50%, transparent 75%)',
+          background: 'radial-gradient(circle, rgba(197, 160, 89,0.22) 0%, rgba(5, 150, 105,0.18) 50%, transparent 75%)',
           top: '50%', left: '50%',
           transform: 'translate(-50%,-50%)',
-          filter: 'blur(40px)',
+          filter: 'blur(50px)',
           pointerEvents: 'none',
         }} />
 
         {/* 3D Interactive Tilt Card */}
         <TiltCard maxTilt={14} perspective={900} scale={1.03} style={{ zIndex: 1, maxWidth: 440, width: '100%' }}>
           <div style={{
-            background: 'rgba(19, 9, 28, 0.65)',
+            background: 'rgba(8, 28, 21, 0.65)',
             backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(212, 175, 55, 0.35)',
+            border: '1px solid rgba(197, 160, 89, 0.35)',
             borderRadius: '28px',
             padding: '3rem 2rem',
             textAlign: 'center',
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.15)',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(197, 160, 89, 0.15)',
           }}>
             <div className="floating-rose" style={{ fontSize: '4.5rem', marginBottom: '1.25rem', userSelect: 'none' }}>
               ✨
@@ -143,7 +145,7 @@ export default function Register() {
                     display: 'flex', alignItems: 'center', gap: '0.75rem',
                     color: 'var(--text-muted)', fontSize: '0.88rem',
                     background: 'rgba(255,255,255,0.03)', padding: '0.55rem 0.85rem',
-                    borderRadius: 10, border: '1px solid rgba(212,175,55,0.15)',
+                    borderRadius: 10, border: '1px solid rgba(197, 160, 89,0.15)',
                     transition: 'all 0.25s ease',
                   }}
                   onMouseEnter={e => {
@@ -151,7 +153,7 @@ export default function Register() {
                     e.currentTarget.style.transform = 'translateX(4px)'
                   }}
                   onMouseLeave={e => {
-                    e.currentTarget.style.borderColor = 'rgba(212,175,55,0.15)'
+                    e.currentTarget.style.borderColor = 'rgba(197, 160, 89,0.15)'
                     e.currentTarget.style.transform = 'translateX(0)'
                   }}
                 >
@@ -176,36 +178,38 @@ export default function Register() {
           minWidth: 0,
           position: 'relative',
           overflow: 'hidden',
-          background: 'linear-gradient(135deg, #0d0614 0%, #170b24 50%, #0b0510 100%)',
-          borderLeft: '1px solid rgba(212, 175, 55, 0.15)',
+          background: 'linear-gradient(135deg, #0d0614 0%, #170b24 50%, #05140f 100%)',
+          borderLeft: '1px solid rgba(197, 160, 89, 0.15)',
         }}
       >
         {/* Ambient Particles in Form Background */}
         <Particles
-          particleCount={30}
-          particleColors={['#d4af37', '#f0d060', '#c084fc', '#ffffff']}
-          speed={0.35}
+          particleCount={45}
+          particleColors={['#d4af37', '#ffd700', '#f6e05e', '#c084fc', '#f472b6', '#ffffff']}
+          speed={0.4}
           interactive={true}
+          connectLines={true}
+          maxConnectDistance={85}
         />
 
         {/* Ambient Floating Aurora Glowing Orbs behind the Card */}
         <div style={{
           position: 'absolute',
-          width: 480, height: 480,
+          width: 520, height: 520,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(147, 51, 234, 0.16) 0%, rgba(212, 175, 55, 0.1) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(5, 150, 105, 0.22) 0%, rgba(197, 160, 89, 0.16) 40%, transparent 70%)',
           top: '45%', left: '50%',
           transform: 'translate(-50%, -50%)',
-          filter: 'blur(60px)',
+          filter: 'blur(55px)',
           pointerEvents: 'none',
           animation: 'drift2 14s ease-in-out infinite',
         }} />
 
         <div style={{
           position: 'absolute',
-          width: 320, height: 320,
+          width: 360, height: 360,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(197, 160, 89, 0.18) 0%, rgba(236, 72, 153, 0.12) 50%, transparent 70%)',
           bottom: '-10%', right: '-10%',
           filter: 'blur(50px)',
           pointerEvents: 'none',
@@ -213,7 +217,7 @@ export default function Register() {
         }} />
 
         <SpotlightCard
-          spotlightColor="rgba(212, 175, 55, 0.28)"
+          spotlightColor="rgba(197, 160, 89, 0.28)"
           spotlightSize={340}
           style={{ width: '100%', maxWidth: 460, padding: '2.5rem 2.25rem', zIndex: 2 }}
         >
@@ -358,7 +362,7 @@ export default function Register() {
                 fontSize: '1rem',
                 fontWeight: 600,
                 letterSpacing: '0.04em',
-                boxShadow: '0 4px 20px rgba(212, 175, 55, 0.35)',
+                boxShadow: '0 4px 20px rgba(197, 160, 89, 0.35)',
               }}
               disabled={loading}
             >

@@ -1,19 +1,20 @@
 import { useEffect, useRef } from 'react'
 
-export default function Modal({ isOpen, onClose, title, children, maxWidth = '520px' }) {
+export default function Modal({ isOpen, open, onClose, title, children, maxWidth = '520px' }) {
+  const isVisible = isOpen ?? open ?? false
   const boxRef = useRef(null)
 
   useEffect(() => {
-    if (!isOpen) return
+    if (!isVisible) return
     function onKey(e) { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
     // Focus first focusable element
     const el = boxRef.current?.querySelector('button, input, select, textarea, a[href]')
     el?.focus()
     return () => document.removeEventListener('keydown', onKey)
-  }, [isOpen, onClose])
+  }, [isVisible, onClose])
 
-  if (!isOpen) return null
+  if (!isVisible) return null
 
   return (
     <div className="overlay fade-in" onClick={onClose}>

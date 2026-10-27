@@ -219,7 +219,7 @@ export default function Contact() {
                     className="faq-question"
                     onClick={() => setActiveFaq(isOpen ? null : index)}
                     style={{
-                      background: isOpen ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                      background: isOpen ? 'rgba(197, 160, 89, 0.1)' : 'transparent',
                       width: '100%',
                       cursor: 'pointer',
                       border: 'none',

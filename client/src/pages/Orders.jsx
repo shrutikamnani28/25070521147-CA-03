@@ -15,8 +15,8 @@ function TrackBar({ status }) {
             <div style={{
               width: 14, height: 14, borderRadius: '50%',
               background: i <= idx ? 'var(--gold)' : 'var(--gold-dim)',
-              border: `2px solid ${i <= idx ? 'var(--gold)' : 'rgba(212,175,55,0.3)'}`,
-              boxShadow: i <= idx ? '0 0 8px rgba(212,175,55,0.5)' : 'none',
+              border: `2px solid ${i <= idx ? 'var(--gold)' : 'rgba(197, 160, 89,0.3)'}`,
+              boxShadow: i <= idx ? '0 0 8px rgba(197, 160, 89,0.5)' : 'none',
               transition: 'all 0.3s',
             }} />
             <span style={{ fontSize: '0.65rem', color: i <= idx ? 'var(--gold)' : 'var(--text-muted)', textAlign: 'center', lineHeight: 1.2, whiteSpace: 'nowrap' }}>{s}</span>
@@ -92,9 +92,9 @@ export default function Orders() {
                   </span>
                   <span style={{
                     padding: '0.25rem 0.8rem', borderRadius: 999, fontSize: '0.78rem', fontWeight: 600,
-                    background: order.status === 'Delivered' ? 'var(--emerald-dim)' : 'rgba(212,175,55,0.15)',
+                    background: order.status === 'Delivered' ? 'var(--emerald-dim)' : 'rgba(197, 160, 89,0.15)',
                     color: order.status === 'Delivered' ? 'var(--emerald)' : 'var(--gold)',
-                    border: `1px solid ${order.status === 'Delivered' ? 'rgba(16,185,129,0.4)' : 'rgba(212,175,55,0.4)'}`,
+                    border: `1px solid ${order.status === 'Delivered' ? 'rgba(16,185,129,0.4)' : 'rgba(197, 160, 89,0.4)'}`,
                   }}>
                     {order.status}
                   </span>
@@ -118,7 +118,12 @@ export default function Orders() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.25rem' }}>
                     {(order.items || []).map((item, i) => (
                       <div key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                        <img src={item.image} alt={item.name} style={{ width: 52, height: 52, objectFit: 'cover', borderRadius: 8, flexShrink: 0 }} />
+                        <img
+                          src={item.image || '/perfumes/floral/01_velvet_rose.png'}
+                          alt={item.name}
+                          onError={(e) => { e.currentTarget.src = '/perfumes/floral/01_velvet_rose.png' }}
+                          style={{ width: 52, height: 52, objectFit: 'cover', borderRadius: 8, flexShrink: 0 }}
+                        />
                         <div style={{ flex: 1 }}>
                           <p style={{ fontSize: '0.92rem', fontFamily: 'var(--font-serif)' }}>{item.name}</p>
                           <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem' }}>{item.size} × {item.qty}</p>
@@ -132,7 +137,7 @@ export default function Orders() {
 
                   {/* Shipping address */}
                   {order.shippingAddress && (
-                    <div style={{ background: 'rgba(212,175,55,0.04)', border: '1px solid var(--gold-dim)', borderRadius: 10, padding: '0.9rem 1.1rem' }}>
+                    <div style={{ background: 'rgba(197, 160, 89,0.04)', border: '1px solid var(--gold-dim)', borderRadius: 10, padding: '0.9rem 1.1rem' }}>
                       <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.4rem' }}>Shipping To</p>
                       <p style={{ fontSize: '0.88rem', color: 'var(--text-primary)' }}>
                         {order.shippingAddress.name}, {order.shippingAddress.line1}, {order.shippingAddress.city}, {order.shippingAddress.state} — {order.shippingAddress.pincode}

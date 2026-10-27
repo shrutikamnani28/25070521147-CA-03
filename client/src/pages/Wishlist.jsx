@@ -66,9 +66,14 @@ export default function Wishlist() {
             <div key={p._id} className="glass-card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
               <div style={{ position: 'relative', height: 210, overflow: 'hidden', cursor: 'pointer' }}
                 onClick={() => navigate(`/product/${p._id}`)}>
-                <img src={p.image} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
+                <img
+                  src={p.image || '/perfumes/floral/01_velvet_rose.png'}
+                  alt={p.name}
+                  onError={(e) => { e.currentTarget.src = '/perfumes/floral/01_velvet_rose.png' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
                   onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.06)'}
-                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} />
+                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                />
                 <div style={{ position: 'absolute', top: 8, left: 8 }}><Badge type={p.category} /></div>
                 <button
                   onClick={e => { e.stopPropagation(); removeItem(String(p._id)) }}
@@ -86,11 +91,11 @@ export default function Wishlist() {
                   {p.name}
                 </h3>
                 <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
-                  <span style={{ color: 'var(--gold)', fontSize: '0.8rem' }}>{'★'.repeat(Math.round(p.rating))}</span>
-                  <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>{p.rating}</span>
+                  <span style={{ color: 'var(--gold)', fontSize: '0.8rem' }}>{'\u2605'.repeat(Math.round(p.rating || 5))}</span>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>{p.rating || 5.0}</span>
                 </div>
                 <p style={{ fontFamily: 'var(--font-serif)', color: 'var(--gold)', fontWeight: 700, fontSize: '1.1rem', marginTop: 'auto', paddingTop: '0.5rem' }}>
-                  ₹{p.price.toLocaleString('en-IN')}
+                  {'\u20B9'}{p.price.toLocaleString('en-IN')}
                 </p>
               </div>
               <div style={{ padding: '0 1rem 1rem', display: 'flex', gap: '0.5rem' }}>

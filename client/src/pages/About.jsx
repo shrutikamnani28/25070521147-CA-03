@@ -35,8 +35,8 @@ export default function About() {
 
   const timeline = [
     { year: '2018', event: 'Velvet Vapors is founded in Bangalore with a vision to democratize luxury perfumery in India.' },
-    { year: '2020', event: 'Launch of Noir Mystique and Saffron Dreams — our first two signature scents. Sold out in 72 hours.' },
-    { year: '2022', event: 'Expanded to 12 signature scents. Featured in Vogue India and GQ as "The Best Niche Fragrance Brand."' },
+    { year: '2020', event: 'Curated our inaugural prestige collection featuring Oud Wood and Baccarat Rouge 540. Sold out in 72 hours.' },
+    { year: '2022', event: 'Expanded our atelier to 19 curated artisanal fragrances. Featured in Vogue India and GQ as "The Best Niche Fragrance Brand."' },
     { year: '2024', event: 'Crossed 500 happy customers. Launched the Velvet Vapors Bespoke Service for custom formulations.' },
   ]
 
@@ -63,8 +63,12 @@ export default function About() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem', alignItems: 'center', marginBottom: '5rem' }}>
             <div>
               <div className="glass-card" style={{ height: 380, overflow: 'hidden', padding: 0 }}>
-                <img src="https://images.unsplash.com/photo-1588514912908-b6b7bbe21ace?w=600&auto=format&fit=crop" alt="Perfume lab"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img
+                  src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&auto=format&fit=crop&q=80"
+                  alt="Perfume lab"
+                  onError={(e) => { e.currentTarget.src = '/perfumes/woody/16_sandal_noir.png' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
               </div>
             </div>
             <div>

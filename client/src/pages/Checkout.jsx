@@ -109,7 +109,12 @@ export default function Checkout() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
               {cart.map(item => (
                 <div key={`${item._id}_${item.size}`} className="glass-card" style={{ padding: '1rem', display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                  <img src={item.image} alt={item.name} style={{ width: 64, height: 64, objectFit: 'cover', borderRadius: 8 }} />
+                  <img
+                    src={item.image || '/perfumes/floral/01_velvet_rose.png'}
+                    alt={item.name}
+                    onError={(e) => { e.currentTarget.src = '/perfumes/floral/01_velvet_rose.png' }}
+                    style={{ width: 64, height: 64, objectFit: 'cover', borderRadius: 8 }}
+                  />
                   <div style={{ flex: 1 }}>
                     <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem' }}>{item.name}</p>
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>{item.size} × {item.qty}</p>

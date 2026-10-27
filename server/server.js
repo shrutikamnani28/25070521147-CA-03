@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const { MongoClient, ObjectId } = require("mongodb");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
@@ -8,6 +9,7 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/perfumes", express.static(path.join(__dirname, "public/perfumes")));
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017";
 const DB_NAME = "velvet_vapors_db";
@@ -22,6 +24,7 @@ const users = () => db().collection("users");
 const perfumes = () => db().collection("perfumes");
 const orders = () => db().collection("orders");
 const reviews = () => db().collection("reviews");
+const siteReviews = () => db().collection("site_reviews");
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -32,6 +35,39 @@ const publicUser = (u) => ({
   name: u.name,
   email: u.email,
   role: u.role,
+  phone: u.phone || "+91 98201 54321",
+  address: u.address || {
+    fullName: u.name || "Aarav Sharma",
+    phone: u.phone || "+91 98201 54321",
+    street: "B-402, Oberoi Sky Heights, Lokhandwala Complex",
+    landmark: "Opposite Celebration Club, 4th Cross Road",
+    city: "Mumbai",
+    state: "Maharashtra",
+    pincode: "400053",
+    country: "India",
+    addressType: "Home / Residence"
+  },
+  secondaryAddress: u.secondaryAddress || {
+    fullName: u.name || "Aarav Sharma",
+    phone: u.phone || "+91 98201 54321",
+    street: "Suite 1408, One International Centre, Tower 2",
+    landmark: "Senapati Bapat Marg, Elphinstone West",
+    city: "Mumbai",
+    state: "Maharashtra",
+    pincode: "400013",
+    country: "India",
+    addressType: "Office / Corporate"
+  },
+  tier: u.tier || "Atelier Gold Patron",
+  rewardPoints: u.rewardPoints || 1850,
+  preferences: u.preferences || {
+    scentFamily: "Woody & Oriental",
+    flaconSize: "100ml Eau de Parfum",
+    favoriteNotes: ["Agarwood (Oud)", "Bourbon Vanilla", "Juniper Berries", "Tuscan Iris"],
+    curatedRecommendations: true,
+    newsletterVIP: true,
+    giftPackagingDefault: true,
+  },
   wishlist: u.wishlist || [],
   createdAt: u.createdAt,
 });
@@ -120,6 +156,29 @@ app.get("/api/auth/me", protect, (req, res) => {
   res.json({ user: publicUser(req.user) });
 });
 
+// PUT /api/auth/profile
+app.put("/api/auth/profile", protect, async (req, res) => {
+  try {
+    const { name, phone, address, secondaryAddress, preferences } = req.body;
+    const updateFields = {};
+    if (name) updateFields.name = String(name).trim();
+    if (phone) updateFields.phone = String(phone).trim();
+    if (address) updateFields.address = address;
+    if (secondaryAddress) updateFields.secondaryAddress = secondaryAddress;
+    if (preferences) updateFields.preferences = preferences;
+
+    await users().updateOne(
+      { _id: req.user._id },
+      { $set: updateFields }
+    );
+
+    const updatedUser = await users().findOne({ _id: req.user._id });
+    res.json({ user: publicUser(updatedUser), msg: "Profile updated successfully" });
+  } catch (err) {
+    res.status(500).json({ msg: "Failed to update profile", error: err.message });
+  }
+});
+
 // ─── Perfumes Routes ──────────────────────────────────────────────────────────
 
 // GET /api/perfumes
@@ -181,7 +240,7 @@ app.post("/api/perfumes", protect, adminOnly, async (req, res) => {
     stock: Number(stock) || 20,
     rating: Number(rating) || 4.5,
     description: description || "",
-    image: image || "https://images.unsplash.com/photo-1541643600914-78b084683702?w=400",
+    image: image || "/perfumes/woody/16_sandal_noir.png",
     createdAt: new Date(),
   };
 
@@ -337,6 +396,32 @@ app.post("/api/reviews/:perfumeId", protect, async (req, res) => {
   ).catch(() => {});
 
   res.status(201).json({ review: { ...doc, _id: result.insertedId } });
+});
+
+// GET /api/site-reviews
+app.get("/api/site-reviews", async (req, res) => {
+  const data = await siteReviews().find({}).sort({ createdAt: -1 }).toArray();
+  res.json({ siteReviews: data });
+});
+
+// POST /api/site-reviews
+app.post("/api/site-reviews", async (req, res) => {
+  const { patronName, city, category, rating, title, comment, verifiedPurchase } = req.body;
+  if (!comment || !patronName) {
+    return res.status(400).json({ msg: "Name and review comment are required" });
+  }
+  const doc = {
+    patronName: String(patronName).trim(),
+    city: String(city || "Mumbai").trim(),
+    category: String(category || "Product Quality").trim(),
+    rating: Number(rating) || 5,
+    title: String(title || "Exceptional Atelier Experience").trim(),
+    comment: String(comment).trim(),
+    verifiedPurchase: String(verifiedPurchase || "Artisanal Fragrance Selection").trim(),
+    createdAt: new Date(),
+  };
+  const result = await siteReviews().insertOne(doc);
+  res.status(201).json({ siteReview: { ...doc, _id: result.insertedId } });
 });
 
 // ─── Wishlist Routes ──────────────────────────────────────────────────────────

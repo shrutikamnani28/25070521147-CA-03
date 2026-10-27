@@ -10,30 +10,30 @@ import ShinyText from '../components/reactbits/ShinyText.jsx'
 import SpotlightCard from '../components/reactbits/SpotlightCard.jsx'
 import TiltCard from '../components/reactbits/TiltCard.jsx'
 
-/* ─── Aurora Background ─── */
+/* --- Aurora Background --- */
 function Aurora() {
   return (
     <div className="aurora-bg">
       <div className="aurora-orb" style={{
         width: 520, height: 520, left: '-10%', top: '-20%',
-        background: 'radial-gradient(circle, #6b21a8, #2d1b4e)',
+        background: 'radial-gradient(circle, #059669, #064e3b)',
         animation: 'drift1 12s ease-in-out infinite',
       }} />
       <div className="aurora-orb" style={{
         width: 440, height: 440, right: '-5%', top: '10%',
-        background: 'radial-gradient(circle, #d4af37, #92400e)',
+        background: 'radial-gradient(circle, #c5a059, #78350f)',
         animation: 'drift2 15s ease-in-out infinite',
       }} />
       <div className="aurora-orb" style={{
         width: 380, height: 380, left: '30%', bottom: '-10%',
-        background: 'radial-gradient(circle, #1e1b4b, #4c1d95)',
+        background: 'radial-gradient(circle, #047857, #022c22)',
         animation: 'drift1 18s ease-in-out infinite',
       }} />
     </div>
   )
 }
 
-/* ─── Blur Text Animation ─── */
+/* --- Blur Text Animation --- */
 function BlurText({ text, delay = 50 }) {
   const [visible, setVisible] = useState(false)
   useEffect(() => { const t = setTimeout(() => setVisible(true), 80); return () => clearTimeout(t) }, [])
@@ -52,7 +52,7 @@ function BlurText({ text, delay = 50 }) {
   )
 }
 
-/* ─── CountUp ─── */
+/* --- CountUp --- */
 function CountUp({ end, suffix = '', duration = 2000 }) {
   const [count, setCount] = useState(0)
   const ref = useRef(null)
@@ -76,7 +76,7 @@ function CountUp({ end, suffix = '', duration = 2000 }) {
   return <span ref={ref}>{count}{suffix}</span>
 }
 
-/* ─── Scent Quiz Modal ─── */
+/* --- Scent Quiz Modal --- */
 function ScentQuiz({ isOpen, onClose }) {
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState({})
@@ -84,7 +84,7 @@ function ScentQuiz({ isOpen, onClose }) {
   const questions = [
     { q: 'What mood are you dressing for?', opts: ['Bold & Powerful', 'Romantic & Soft', 'Fresh & Energetic', 'Mysterious & Deep'] },
     { q: 'Which note family calls to you?', opts: ['Woody & Earthy', 'Floral & Feminine', 'Citrus & Green', 'Spicy & Oriental'] },
-    { q: 'How long do you want it to last?', opts: ['All day (12h+)', '8–10 hours', '5–7 hours', 'Light & airy'] },
+    { q: 'How long do you want it to last?', opts: ['All day (12h+)', '8-10 hours', '5-7 hours', 'Light & airy'] },
   ]
   const categoryMap = {
     'Bold & Powerful':     'Woody',
@@ -146,7 +146,7 @@ function ScentQuiz({ isOpen, onClose }) {
   )
 }
 
-/* ─── Interactive Product Card with Spotlight & 3D Tilt ─── */
+/* --- Interactive Product Card with Spotlight & 3D Tilt --- */
 function ProductCard({ p }) {
   const { addToCart } = useCart()
   const { showToast } = useToast()
@@ -170,7 +170,7 @@ function ProductCard({ p }) {
         style={{ width: '100%', height: '100%', display: 'flex' }}
       >
         <SpotlightCard
-          spotlightColor="rgba(212, 175, 55, 0.22)"
+          spotlightColor="rgba(197, 160, 89, 0.22)"
           spotlightSize={260}
           style={{
             overflow: 'hidden',
@@ -204,14 +204,14 @@ function ProductCard({ p }) {
             </h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <span className="stars" style={{ color: 'var(--gold)', letterSpacing: '1px' }}>
-                {'★'.repeat(Math.round(p.rating))}{'☆'.repeat(5 - Math.round(p.rating))}
+                {'\u2605'.repeat(Math.min(5, Math.max(0, Math.round(p.rating || 5))))}{'\u2606'.repeat(Math.max(0, 5 - Math.round(p.rating || 5)))}
               </span>
-              <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>{p.rating}</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>{p.rating || 5.0}</span>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid rgba(212,175,55,0.15)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid rgba(197, 160, 89,0.15)' }}>
               <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--gold)', fontWeight: 700 }}>
-                ₹{p.price.toLocaleString('en-IN')}
+                {'\u20B9'}{p.price.toLocaleString('en-IN')}
               </span>
               <button
                 className="btn-gold btn-sm shimmer-btn"
@@ -229,7 +229,7 @@ function ProductCard({ p }) {
   )
 }
 
-/* ─── HOME PAGE ─── */
+/* --- HOME PAGE --- */
 export default function Home() {
   const { authFetch } = useAuth()
   const [perfumes, setPerfumes] = useState([])
@@ -245,7 +245,7 @@ export default function Home() {
   }, [authFetch])
 
   const stats = [
-    { end: 12, suffix: '+', label: 'Signature Scents' },
+    { end: 19, suffix: '+', label: 'Artisanal Scents' },
     { end: 500, suffix: '+', label: 'Happy Customers' },
     { end: 4.9, suffix: '/5', label: 'Average Rating' },
   ]
@@ -258,15 +258,15 @@ export default function Home() {
   ]
 
   const testimonials = [
-    { name: 'Aanya R.', stars: 5, text: 'Saffron Dreams is absolutely divine. I get compliments every single day. Worth every rupee!' },
-    { name: 'Mihir P.', stars: 5, text: 'Oud Royale is the most masculine, rich scent I have ever worn. Lasts more than 12 hours!' },
-    { name: 'Priya S.', stars: 5, text: 'Rose Velvet is elegance bottled. The packaging is stunning and the scent is pure romance.' },
+    { name: 'Aanya R.', stars: 5, text: 'Diptyque Orphéon is absolutely divine. The juniper berries and cedarwood get compliments every single day. Worth every rupee!' },
+    { name: 'Mihir P.', stars: 5, text: 'Tom Ford Oud Wood is the most masculine, rich scent I have ever worn. Smoky, smooth, and lasts more than 12 hours!' },
+    { name: 'Priya S.', stars: 5, text: 'Narciso Rodriguez Pure Musc is pure elegance bottled. The white flowers and clean cashmeran are heavenly.' },
   ]
 
   return (
     <div style={{ overflowX: 'hidden' }}>
       
-      {/* ── HERO SECTION ── */}
+      {/* -- HERO SECTION -- */}
       <section style={{
         position: 'relative',
         minHeight: '94vh',
@@ -282,7 +282,7 @@ export default function Home() {
         {/* Interactive Fragrance Vapor Particles */}
         <Particles
           particleCount={45}
-          particleColors={['#d4af37', '#f0d060', '#c084fc', '#e879f9', '#ffffff']}
+          particleColors={['#c5a059', '#e6ca85', '#34d399', '#6ee7b7', '#ffffff']}
           speed={0.45}
           interactive={true}
         />
@@ -290,7 +290,7 @@ export default function Home() {
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 780 }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '8px',
-            background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)',
+            background: 'rgba(197, 160, 89,0.1)', border: '1px solid rgba(197, 160, 89,0.3)',
             borderRadius: 999, padding: '0.4rem 1.25rem', marginBottom: '1.5rem',
           }}>
             <span style={{ fontSize: '1rem' }}>🌹</span>
@@ -305,7 +305,7 @@ export default function Home() {
             fontWeight: 900,
             lineHeight: 1.1,
             marginBottom: '1.5rem',
-            textShadow: '0 0 50px rgba(212,175,55,0.25)',
+            textShadow: '0 0 50px rgba(197, 160, 89,0.25)',
           }}>
             <BlurText text="Wear the mood." delay={50} />
           </h1>
@@ -324,7 +324,7 @@ export default function Home() {
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button
               className="btn-gold shimmer-btn"
-              style={{ fontSize: '1rem', padding: '0.95rem 2.4rem', boxShadow: '0 6px 25px rgba(212, 175, 55, 0.4)' }}
+              style={{ fontSize: '1rem', padding: '0.95rem 2.4rem', boxShadow: '0 6px 25px rgba(197, 160, 89, 0.4)' }}
               onClick={() => navigate('/shop')}
             >
               Explore Collection →
@@ -340,8 +340,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── INTERACTIVE OLFACTORY MOOD SELECTOR ── */}
-      <section style={{ padding: '3.5rem 1.5rem', background: 'rgba(19, 9, 28, 0.7)', borderTop: '1px solid var(--gold-dim)', borderBottom: '1px solid var(--gold-dim)' }}>
+      {/* -- INTERACTIVE OLFACTORY MOOD SELECTOR -- */}
+      <section style={{ padding: '3.5rem 1.5rem', background: 'rgba(8, 28, 21, 0.75)', borderTop: '1px solid var(--gold-dim)', borderBottom: '1px solid var(--gold-dim)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <p style={{ color: 'var(--gold)', fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.4rem' }}>
@@ -358,14 +358,14 @@ export default function Home() {
                 onMouseEnter={() => setActiveMood(fam.category)}
                 onMouseLeave={() => setActiveMood(null)}
                 style={{
-                  background: activeMood === fam.category ? 'rgba(212,175,55,0.14)' : 'rgba(13,9,28,0.85)',
-                  border: `1px solid ${activeMood === fam.category ? 'var(--gold)' : 'rgba(212,175,55,0.25)'}`,
+                  background: activeMood === fam.category ? 'rgba(197, 160, 89,0.14)' : 'rgba(13,9,28,0.85)',
+                  border: `1px solid ${activeMood === fam.category ? 'var(--gold)' : 'rgba(197, 160, 89,0.25)'}`,
                   borderRadius: '16px',
                   padding: '1.5rem',
                   cursor: 'pointer',
                   transition: 'all 0.3s cubic-bezier(0.25, 1, 0.5, 1)',
                   transform: activeMood === fam.category ? 'translateY(-6px)' : 'none',
-                  boxShadow: activeMood === fam.category ? '0 12px 30px rgba(212,175,55,0.2)' : 'none',
+                  boxShadow: activeMood === fam.category ? '0 12px 30px rgba(197, 160, 89,0.2)' : 'none',
                 }}
               >
                 <div style={{ fontSize: '2.2rem', marginBottom: '0.75rem' }}>{fam.icon}</div>
@@ -384,8 +384,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STATS SECTION ── */}
-      <section style={{ background: 'rgba(212,175,55,0.03)', padding: '3.5rem 1.5rem' }}>
+      {/* -- STATS SECTION -- */}
+      <section style={{ background: 'rgba(197, 160, 89,0.03)', padding: '3.5rem 1.5rem' }}>
         <div className="container">
           <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             {stats.map(s => (
@@ -400,7 +400,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── BESTSELLERS GRID ── */}
+      {/* -- BESTSELLERS GRID -- */}
       <section style={{ padding: '5.5rem 1.5rem' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
@@ -418,16 +418,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── EXCLUSIVE OFFERS WITH SPOTLIGHT CARDS ── */}
-      <section style={{ padding: '4rem 1.5rem', background: 'rgba(212,175,55,0.02)', borderTop: '1px solid var(--gold-dim)' }}>
+      {/* -- EXCLUSIVE OFFERS WITH SPOTLIGHT CARDS -- */}
+      <section style={{ padding: '4rem 1.5rem', background: 'rgba(197, 160, 89,0.02)', borderTop: '1px solid var(--gold-dim)' }}>
         <div className="container">
           <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>Exclusive Atelier Offers</h2>
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <SpotlightCard
-              spotlightColor="rgba(212, 175, 55, 0.25)"
+              spotlightColor="rgba(197, 160, 89, 0.25)"
               style={{ flex: 1, minWidth: 260, padding: '2rem' }}
             >
-              <div style={{ fontSize: '2.5rem', marginBottom: '0.85rem' }}>🎁</div>
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.85rem' }}>🎁</div>
               <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--gold)' }}>
                 First Order Discount
               </h4>
@@ -452,7 +452,7 @@ export default function Home() {
                 Complimentary Express Delivery
               </h4>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6 }}>
-                Orders above ₹4,000 qualify for rapid refrigerated luxury transport across all major cities in India.
+                Orders above {'\u20B9'}4,000 qualify for rapid refrigerated luxury transport across all major cities in India.
               </p>
             </SpotlightCard>
 
@@ -472,7 +472,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
+      {/* -- TESTIMONIALS -- */}
       <section style={{ padding: '5.5rem 1.5rem' }}>
         <div className="container">
           <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>What Our Patrons Say</h2>
@@ -480,17 +480,17 @@ export default function Home() {
             {testimonials.map(t => (
               <SpotlightCard
                 key={t.name}
-                spotlightColor="rgba(212, 175, 55, 0.2)"
+                spotlightColor="rgba(197, 160, 89, 0.2)"
                 style={{ flex: 1, minWidth: 260, padding: '2rem' }}
               >
                 <div className="stars" style={{ marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--gold)' }}>
-                  {'★'.repeat(t.stars)}
+                  {'\u2605'.repeat(t.stars || 5)}
                 </div>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.8, marginBottom: '1.25rem', fontStyle: 'italic' }}>
                   "{t.text}"
                 </p>
                 <p style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--gold)' }}>
-                  — {t.name}
+                  {'\u2014'} {t.name}
                 </p>
               </SpotlightCard>
             ))}
