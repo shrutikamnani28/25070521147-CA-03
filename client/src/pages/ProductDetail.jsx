@@ -210,7 +210,7 @@ export default function ProductDetail() {
 
   if (loading) return (
     <div className="page-wrapper"><div className="container" style={{ textAlign: 'center', paddingTop: '4rem' }}>
-      <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🌹</div>
+      <div style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--gold)' }}>✦</div>
       <p style={{ color: 'var(--text-muted)' }}>Loading fragrance details…</p>
     </div></div>
   )

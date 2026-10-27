@@ -111,7 +111,7 @@ export default function Profile() {
           addressType: formData.addressType,
         },
       })
-      showToast('Delivery Address & Patron Profile successfully updated! 🌹', 'success')
+      showToast('Delivery Address & Patron Profile successfully updated! ✦', 'success')
       setEditModalOpen(false)
     } catch (err) {
       showToast(err.message || 'Failed to update details', 'error')

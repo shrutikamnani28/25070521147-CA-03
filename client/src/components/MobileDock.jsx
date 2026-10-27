@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 export default function MobileDock() {
   const items = [
     { to: '/home',    icon: '🏠', label: 'Home' },
-    { to: '/shop',    icon: '🌹', label: 'Shop' },
+    { to: '/shop',    icon: '✦',  label: 'Shop' },
     { to: '/cart',    icon: '🛍', label: 'Bag' },
     { to: '/wishlist',icon: '♡',  label: 'Wish' },
     { to: '/orders',  icon: '📦', label: 'Orders' },

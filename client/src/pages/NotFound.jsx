@@ -27,8 +27,8 @@ export default function NotFound() {
       }} />
 
       <div className="glass-card slide-up" style={{ maxWidth: 540, padding: '3.5rem 2.5rem', position: 'relative', zIndex: 1 }}>
-        <div style={{ fontSize: '4.5rem', marginBottom: '1rem', filter: 'drop-shadow(0 0 20px rgba(197, 160, 89,0.4))' }}>
-          🌫️🌹
+        <div style={{ fontSize: '4.5rem', marginBottom: '1rem', filter: 'drop-shadow(0 0 20px rgba(197, 160, 89, 0.4))' }}>
+          ⚜️
         </div>
         
         <p style={{ color: 'var(--gold)', letterSpacing: '0.25em', textTransform: 'uppercase', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.5rem' }}>

@@ -79,7 +79,7 @@ function ProductCard({ p }) {
             className="btn-gold shimmer-btn"
             style={{ width: '100%', padding: '0.65rem' }}
             disabled={outStock}
-            onClick={() => { addToCart(p, p.size || '100ml', 1); showToast(`${p.name} added to bag! 🌹`) }}
+            onClick={() => { addToCart(p, p.size || '100ml', 1); showToast(`${p.name} added to bag! ✦`) }}
           >
             {outStock ? 'Sold Out' : '🛍 Add to Bag'}
           </button>
@@ -236,7 +236,7 @@ export default function Shop() {
               </div>
             ) : perfumes.length === 0 ? (
               <EmptyState
-                icon="🌹"
+                icon="✦"
                 title="No fragrances match your criteria"
                 message="Try adjusting your filters or search keywords to discover matching flacons."
                 actionLabel="Clear Filters"

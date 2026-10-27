@@ -141,7 +141,7 @@ export default function Reviews() {
         }}>
           {[
             { label: 'Overall Patron Rating', val: '4.95 / 5', sub: '500+ Verified Dispatches', icon: '👑', color: '#d4af37' },
-            { label: 'Product Quality', val: '5.0 / 5', sub: 'Pure Olfactory Oils & Longevity', icon: '🌹', color: '#c084fc' },
+            { label: 'Product Quality', val: '5.0 / 5', sub: 'Pure Olfactory Oils & Longevity', icon: '⚜️', color: 'var(--gold)' },
             { label: 'Bespoke Packaging', val: '4.9 / 5', sub: 'Velvet-lined Magnetic Boxes', icon: '🎁', color: '#f472b6' },
             { label: 'Express Delivery', val: '4.9 / 5', sub: '48h Thermal Protected Transit', icon: '🚀', color: '#38bdf8' },
           ].map(stat => (

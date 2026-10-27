@@ -332,7 +332,7 @@ export default function Admin() {
         <div style={{ display: 'flex', gap: '0.6rem', borderBottom: '1px solid var(--gold-dim)', paddingBottom: '1rem', marginBottom: '2rem', overflowX: 'auto' }}>
           {[
             { id: 'stats', label: '📊 Atelier Overview', count: null },
-            { id: 'perfumes', label: '🌹 Fragrance Catalog', count: perfumes.length },
+            { id: 'perfumes', label: '✦ Fragrance Catalog', count: perfumes.length },
             { id: 'orders', label: '📦 Orders & Dispatch', count: orders.length },
             { id: 'customers', label: '👥 Registered Patrons', count: users.length }
           ].map(tab => (
@@ -359,7 +359,7 @@ export default function Admin() {
 
         {loading ? (
           <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-            <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🌹</div>
+            <div style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--gold)' }}>✦</div>
             <p style={{ color: 'var(--text-muted)' }}>Syncing Atelier records...</p>
           </div>
         ) : (

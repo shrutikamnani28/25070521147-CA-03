@@ -460,7 +460,7 @@ export default function Home() {
               spotlightColor="rgba(16, 185, 129, 0.25)"
               style={{ flex: 1, minWidth: 260, padding: '2rem' }}
             >
-              <div style={{ fontSize: '2.5rem', marginBottom: '0.85rem' }}>🌹</div>
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.85rem' }}>⚜️</div>
               <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', marginBottom: '0.5rem', color: '#a7f3d0' }}>
                 Signature Obsidian Wrapping
               </h4>

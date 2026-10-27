@@ -27,7 +27,7 @@ export default function About() {
   const navigate = useNavigate()
 
   const values = [
-    { icon: '🌹', title: 'Rare Ingredients', desc: 'We source only the finest raw materials: Bulgarian rose absolute, Haitian vetiver, Iranian saffron, and aged Indian oud.' },
+    { icon: '⚜️', title: 'Rare Ingredients', desc: 'We source only the finest raw materials: Bulgarian rose absolute, Haitian vetiver, Iranian saffron, and aged Indian oud.' },
     { icon: '⚗️', title: 'Master Perfumers', desc: 'Each formula is created in collaboration with IFRA-certified perfumers with decades of artisanal experience.' },
     { icon: '✦', title: 'Zero Compromise', desc: 'No shortcuts. No synthetic shortcuts passed off as naturals. Every note is intentional, every accord balanced to perfection.' },
     { icon: '🌿', title: 'Conscious Luxury', desc: 'Our packaging is 100% recyclable. We pledge 2% of every sale to reforestation of raw-ingredient source regions.' },

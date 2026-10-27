@@ -1,4 +1,4 @@
-export default function EmptyState({ icon = '🌹', title, subtitle, ctaLabel, onCta }) {
+export default function EmptyState({ icon = '✦', title, subtitle, ctaLabel, onCta }) {
   return (
     <div className="empty-state slide-up">
       <div className="empty-state-icon">{icon}</div>
